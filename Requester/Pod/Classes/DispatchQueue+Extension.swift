@@ -3,9 +3,9 @@
 
 import Foundation
 
-/// Удобная работа с background/main блоками кода
+/// DispatchQueue extension
 extension DispatchQueue {
-    public class func main(delay: TimeInterval = 0, main: @escaping () -> ()) {
+    class func main(delay: TimeInterval = 0, main: @escaping () -> ()) {
         guard delay > 0 else {
             DispatchQueue.main.async { main() }
             return
@@ -15,11 +15,11 @@ extension DispatchQueue {
         DispatchQueue.main.asyncAfter(deadline: time, execute: main)
     }
 
-    public class func background(priority: DispatchQoS.QoSClass = .default, background: @escaping () -> ()) {
+    class func background(priority: DispatchQoS.QoSClass = .default, background: @escaping () -> ()) {
         DispatchQueue.global(qos: priority).async { background() }
     }
 
-    public class func backgroundAndMain(
+    class func backgroundAndMain(
         priority: DispatchQoS.QoSClass = .default,
         background: @escaping () -> (),
         main: @escaping () -> ()

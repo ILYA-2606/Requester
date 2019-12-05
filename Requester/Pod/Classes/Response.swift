@@ -18,6 +18,9 @@ final class Response {
 
     /// Response data
     var responseData = Data()
+    
+    /// Progress
+    var requesterProgress = RequesterProgress(totalBytes: 0)
 
     /**
      Response initializer

@@ -8,7 +8,7 @@ public final class Requester: NSObject {
     // MARK: - Types
     
     public typealias ResultHandler = (_ result: Any?, _ error: Error?) -> Void
-    public typealias ProgressHandler = (_ progress: Progress) -> Void
+    public typealias ProgressHandler = (_ progress: RequesterProgress) -> Void
     
     // MARK: - Properties
 
@@ -150,12 +150,13 @@ public final class Requester: NSObject {
         return sendRequest(request, response: response)
     }
 
-    /**
-     Send request
-     - parameter request: Request
-     - parameter response: Response
-     */
-    @discardableResult
+    // MARK: - Private Methods
+
+    private override init() {
+        super.init()
+        session = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
+    }
+
     private func sendRequest(_ request: Request, response: Response) -> URLSessionDataTask {
         var urlRequest = URLRequest(
             url: request.url,
@@ -182,13 +183,6 @@ public final class Requester: NSObject {
         tasks.append(task)
         taskLock.unlock()
         return task
-    }
-
-    // MARK: - Private Methods
-
-    private override init() {
-        super.init()
-        session = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
     }
 
     private func bodyData(object: Any?) -> Data? {
@@ -243,8 +237,9 @@ extension Requester: URLSessionDataDelegate {
     ) {
         guard let taskResponse = dataTask.requesterResponse else { return }
         taskResponse.responseData = Data()
+        taskResponse.requesterProgress = RequesterProgress(totalBytes: response.expectedContentLength)
         DispatchQueue.main {
-            taskResponse.progressHandler?(dataTask.progress)
+            taskResponse.progressHandler?(taskResponse.requesterProgress)
         }
         completionHandler(.allow)
     }
@@ -256,8 +251,9 @@ extension Requester: URLSessionDataDelegate {
     ) {
         guard let response = dataTask.requesterResponse else { return }
         response.responseData.append(data)
+        response.requesterProgress.completedBytes = Int64(response.responseData.count)
         DispatchQueue.main {
-            response.progressHandler?(dataTask.progress)
+            response.progressHandler?(response.requesterProgress)
         }
     }
 
@@ -274,7 +270,7 @@ extension Requester: URLSessionDataDelegate {
             return
         }
         DispatchQueue.main {
-            response.progressHandler?(task.progress)
+            response.progressHandler?(response.requesterProgress)
             response.resultHandler(response.responseData, nil)
         }
     }

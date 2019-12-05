@@ -32,7 +32,11 @@ class ViewController: UIViewController {
                 self?.imageView.image = nil
         },
             progressHandler: { [weak self] progress in
-                self?.percentLabel.text = String(format: "Progress: %.0f%%", progress * 100)
+                self?.percentLabel.text = String(
+                    format: "Progress: %.0f%%, Left seconds: %.0f",
+                    progress.fractionCompleted * 100,
+                    progress.estimatedTimeRemaining
+                )
         })
     }
 

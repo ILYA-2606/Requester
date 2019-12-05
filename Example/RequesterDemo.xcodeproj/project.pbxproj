@@ -19,6 +19,8 @@
 		0934316923993752003553D6 /* URLSessionDataTask+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0934316823993752003553D6 /* URLSessionDataTask+Extension.swift */; };
 		0934316B239937C6003553D6 /* DispatchQueue+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0934316A239937C6003553D6 /* DispatchQueue+Extension.swift */; };
 		0934316D239938A6003553D6 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0934316C239938A6003553D6 /* NetworkService.swift */; };
+		A0F7CD66239990000077D0C9 /* RequesterProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F7CD65239990000077D0C9 /* RequesterProgress.swift */; };
+		A0F7CD68239999C60077D0C9 /* TimeInterval+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F7CD67239999C60077D0C9 /* TimeInterval+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		0934316823993752003553D6 /* URLSessionDataTask+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSessionDataTask+Extension.swift"; sourceTree = "<group>"; };
 		0934316A239937C6003553D6 /* DispatchQueue+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Extension.swift"; sourceTree = "<group>"; };
 		0934316C239938A6003553D6 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		A0F7CD65239990000077D0C9 /* RequesterProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequesterProgress.swift; sourceTree = "<group>"; };
+		A0F7CD67239999C60077D0C9 /* TimeInterval+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +93,8 @@
 				093431662399372A003553D6 /* Response.swift */,
 				0934316823993752003553D6 /* URLSessionDataTask+Extension.swift */,
 				0934316A239937C6003553D6 /* DispatchQueue+Extension.swift */,
+				A0F7CD65239990000077D0C9 /* RequesterProgress.swift */,
+				A0F7CD67239999C60077D0C9 /* TimeInterval+Extension.swift */,
 			);
 			name = Classes;
 			path = ../../Requester/Pod/Classes;
@@ -166,8 +172,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0934316923993752003553D6 /* URLSessionDataTask+Extension.swift in Sources */,
+				A0F7CD68239999C60077D0C9 /* TimeInterval+Extension.swift in Sources */,
 				0934315223993533003553D6 /* ViewController.swift in Sources */,
 				0934314E23993533003553D6 /* AppDelegate.swift in Sources */,
+				A0F7CD66239990000077D0C9 /* RequesterProgress.swift in Sources */,
 				0934316523993712003553D6 /* Request.swift in Sources */,
 				0934316D239938A6003553D6 /* NetworkService.swift in Sources */,
 				09343163239936AF003553D6 /* Requester.swift in Sources */,

@@ -9,7 +9,7 @@
 import UIKit
 
 final class NetworkService {
-    typealias DoubleHandler = (Double) -> ()
+    typealias ProgressHandler = (RequesterProgress) -> ()
     typealias ImageHandler = (UIImage) -> ()
     typealias ErrorHandler = (Error?) -> ()
     
@@ -19,7 +19,7 @@ final class NetworkService {
     func obtainPhoto(
         completion: @escaping ImageHandler,
         failure: @escaping ErrorHandler,
-        progressHandler: @escaping DoubleHandler
+        progressHandler: @escaping ProgressHandler
     ) {
         guard let url = URL(string: "https://content.fortune.com/wp-content/uploads/2015/09/stevefinal-1.jpg") else {
             return
@@ -29,10 +29,7 @@ final class NetworkService {
             url: url,
             completion: completion,
             failure: failure,
-            progressHandler: { progress in
-                let percent = progress.fractionCompleted
-                progressHandler(percent)
-        })
+            progressHandler: progressHandler)
     }
     
 }
