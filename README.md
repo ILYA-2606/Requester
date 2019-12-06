@@ -6,6 +6,7 @@ Lightweight HTTP Networking in Swift
 
 ## Requirements:
 - CocoaPods
+- iOS 9+
 
 ## Features:
 - Lightweight wrapper for URLSession
