@@ -41,6 +41,38 @@ requester.sendDataRequest(
 )}
 ```
 
+Custom file downloading:
+```swift
+let requester = Requester.shared
+requester.sendDataRequest(
+    url: url,
+    completion: { (data: Data) in
+        // Data downloaded
+},
+    failure: { error in
+        // Data not loaded with error
+},
+    progressHandler: { progress in
+        // Data downloading with progress
+)}
+```
+
+String downloading:
+```swift
+let requester = Requester.shared
+requester.sendDataRequest(
+    url: url,
+    completion: { (string: String) in
+        // String downloaded
+},
+    failure: { error in
+        // String not loaded with error
+},
+    progressHandler: { progress in
+        // String downloading with progress
+)}
+```
+
 JSON API:
 ```swift
 struct SomeResponseDTO: Decodable {
