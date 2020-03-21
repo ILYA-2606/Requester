@@ -1,0 +1,16 @@
+PODS:
+  - Requester (1.0.1)
+
+DEPENDENCIES:
+  - Requester (~> 1.0.0)
+
+SPEC REPOS:
+  trunk:
+    - Requester
+
+SPEC CHECKSUMS:
+  Requester: f35596038a37d68d2b824bf04be5bccae4c9e2f8
+
+PODFILE CHECKSUM: 335ab0869123faf8b95cde46d93dc9e799eb4820
+
+COCOAPODS: 1.8.4

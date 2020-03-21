@@ -6,6 +6,7 @@
 //  Copyright © 2019 Ilya Shkolnik. All rights reserved.
 //
 
+import Requester
 import UIKit
 
 final class NetworkService {

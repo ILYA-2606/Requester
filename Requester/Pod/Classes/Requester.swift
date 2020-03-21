@@ -36,7 +36,11 @@ public final class Requester: NSObject {
      - parameter method: HTTP-method
      - parameter body: Request body
      - parameter headers: Request headers
+     - parameter timeout: Request timeout interval
+     - parameter cachePolicy: Request cache policy
      - parameter completion: Completion block
+     - parameter failure: Failure block
+     - parameter progressHandler: Progress block
      */
     @discardableResult
     public func sendDataRequest<ResultType: Any>(
@@ -44,6 +48,8 @@ public final class Requester: NSObject {
         method: Request.Method = .get,
         body: Any? = nil,
         headers: [String: String]? = nil,
+        timeout: TimeInterval = 60,
+        cachePolicy: URLRequest.CachePolicy = .useProtocolCachePolicy,
         completion: @escaping ((ResultType) -> ()),
         failure: @escaping ((Error?) -> ()),
         progressHandler: ProgressHandler? = nil
@@ -53,6 +59,8 @@ public final class Requester: NSObject {
             method: method,
             body: body,
             headers: headers,
+            timeout: timeout,
+            cachePolicy: cachePolicy,
             completion: { result, error in
                 if let error = error {
                     failure(error)
@@ -97,7 +105,11 @@ public final class Requester: NSObject {
      - parameter method: HTTP-method
      - parameter body: Request body
      - parameter headers: Request headers
+     - parameter timeout: Request timeout interval
+     - parameter cachePolicy: Request cache policy
      - parameter completion: Completion block
+     - parameter failure: Failure block
+     - parameter progressHandler: Progress block
      */
     @discardableResult
     public func sendJSONRequest<ResultType: Decodable>(
@@ -105,6 +117,8 @@ public final class Requester: NSObject {
         method: Request.Method = .get,
         body: Any? = nil,
         headers: [String: String]? = nil,
+        timeout: TimeInterval = 60,
+        cachePolicy: URLRequest.CachePolicy = .useProtocolCachePolicy,
         completion: @escaping ((ResultType) -> ()),
         failure: @escaping ((Error?) -> ()),
         progressHandler: ProgressHandler? = nil
@@ -114,6 +128,8 @@ public final class Requester: NSObject {
             method: method,
             body: body,
             headers: headers,
+            timeout: timeout,
+            cachePolicy: cachePolicy,
             completion:  { result, error in
                 guard
                     let data = result as? Data,
@@ -134,7 +150,10 @@ public final class Requester: NSObject {
      - parameter method: HTTP-method
      - parameter body: Request body
      - parameter headers: Request headers
+     - parameter timeout: Request timeout interval
+     - parameter cachePolicy: Request cache policy
      - parameter completion: Completion block
+     - parameter progressHandler: Progress block
      */
     @discardableResult
     public func sendRequest(
@@ -142,10 +161,19 @@ public final class Requester: NSObject {
         method: Request.Method = .get,
         body: Any? = nil,
         headers: [String: String]? = nil,
+        timeout: TimeInterval = 60,
+        cachePolicy: URLRequest.CachePolicy = .useProtocolCachePolicy,
         completion: @escaping ResultHandler,
         progressHandler: ProgressHandler? = nil
     ) -> URLSessionDataTask {
-        let request = Request(url: url, method: method, body: body, headers: headers)
+        let request = Request(
+            url: url,
+            method: method,
+            body: body,
+            headers: headers,
+            timeout: timeout,
+            cachePolicy: cachePolicy
+        )
         let response = Response(resultHandler: completion, progressHandler: progressHandler)
         return sendRequest(request, response: response)
     }

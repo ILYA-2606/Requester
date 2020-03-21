@@ -38,7 +38,7 @@ public final class Request {
     public var headers: [String: String]?
 
     /// Timeout
-    public var timeout = 60.0
+    public var timeout: TimeInterval = 60.0
 
     /// Cache policy
     public var cachePolicy: NSURLRequest.CachePolicy = .useProtocolCachePolicy
@@ -48,13 +48,24 @@ public final class Request {
      - parameter url: URL
      - parameter method: HTTP-method
      - parameter body: Body
-     - parameter headers: Headers
+     - parameter headers: Headers     
+     - parameter timeout: Timeout interval
+     - parameter cachePolicy: Cache policy
      */
-    public init(url: URL, method: Method = .get, body: Any? = nil, headers: [String: String]? = nil) {
+    public init(
+        url: URL,
+        method: Method = .get,
+        body: Any? = nil,
+        headers: [String: String]? = nil,
+        timeout: TimeInterval = 60,
+        cachePolicy: NSURLRequest.CachePolicy = .useProtocolCachePolicy
+    ) {
         self.url = url
         self.method = method
         self.body = body
         self.headers = headers
+        self.timeout = timeout
+        self.cachePolicy = cachePolicy
     }
 
     /**
@@ -69,7 +80,9 @@ public final class Request {
         else { return nil }
         self.url = url
         self.method = method
+        timeout = urlRequest.timeoutInterval
         body = urlRequest.httpBody
         headers = urlRequest.allHTTPHeaderFields
+        cachePolicy = urlRequest.cachePolicy
     }
 }

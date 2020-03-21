@@ -1,5 +1,5 @@
-platform :ios, '11.0'
+platform :ios, '9.0'
 use_frameworks!
 target :RequesterDemo do
-  pod 'Requester', '~> 1.0.0'
+  pod 'Requester', '~> 1.0.2'
 end
