@@ -22,6 +22,8 @@ public final class Requester: NSObject {
 
     /// Server certificates
     public var certificates: [Any]?
+    
+    public let isAllowTrustServer = false
 
     // MARK: - Private Properties
 
@@ -243,6 +245,13 @@ extension Requester: URLSessionDelegate {
     ) {
         if challenge.previousFailureCount == 0 {
             guard let identity = identity else {
+                if isAllowTrustServer, let trust = challenge.protectionSpace.serverTrust {
+                    completionHandler(
+                        Foundation.URLSession.AuthChallengeDisposition.useCredential,
+                        URLCredential(trust: trust)
+                    )
+                    return
+                }
                 completionHandler(.performDefaultHandling, nil)
                 return
             }
