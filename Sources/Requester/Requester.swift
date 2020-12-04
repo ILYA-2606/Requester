@@ -23,7 +23,8 @@ public final class Requester: NSObject {
     /// Server certificates
     public var certificates: [Any]?
     
-    public let isAllowTrustServer = false
+    /// Allow trust to server
+    public var isAllowTrustServer = false
 
     // MARK: - Private Properties
 
