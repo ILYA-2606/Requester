@@ -1,4 +1,5 @@
 ![CocoaPods](https://cocoapod-badges.herokuapp.com/v/Requester/badge.png)
+![SPM](https://img.shields.io/badge/SPM-supported-DE5C43.svg?style=flat)
 
 # Requester
 
