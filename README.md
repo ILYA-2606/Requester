@@ -6,7 +6,7 @@
 Lightweight HTTP Networking in Swift
 
 ## Requirements:
-- CocoaPods
+- CocoaPods or SPM
 - iOS 9+
 
 ## Features:
