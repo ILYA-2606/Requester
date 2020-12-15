@@ -22,7 +22,7 @@ Lightweight HTTP Networking in Swift
 ## Installation
 - Add `Requester` in your iOS Project with CocoaPods:
 ```ruby
-pod 'Requester', '~> 1.0.1'
+pod 'Requester'
 ```
 
 ## How to use:
