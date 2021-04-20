@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = "Requester"
-  spec.version      = "1.0.4"
+  spec.version      = "1.0.5"
   spec.license      = { :type => 'MIT', :file => 'LICENSE' }
   spec.description  = "Lightweight REST client"
   spec.summary      = "Lightweight REST client"

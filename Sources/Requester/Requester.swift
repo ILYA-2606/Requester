@@ -185,7 +185,13 @@ public final class Requester: NSObject {
 
     private override init() {
         super.init()
-        session = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
+        let configuration = URLSessionConfiguration.default
+        if #available(iOS 13.0, *) {
+            configuration.tlsMinimumSupportedProtocolVersion = .TLSv12
+        } else {
+            configuration.tlsMinimumSupportedProtocol = .tlsProtocol12
+        }
+        session = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
     }
 
     private func sendRequest(_ request: Request, response: Response) -> URLSessionDataTask {
