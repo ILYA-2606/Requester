@@ -3,10 +3,10 @@
 //  RequesterDemo
 //
 //  Created by Ilya Shkolnik on 05.12.2019.
-//  Copyright © 2019 Ilya Shkolnik. All rights reserved.
+//  Copyright © Darkness Production. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 /// Response
 final class Response {

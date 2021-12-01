@@ -1,7 +1,11 @@
 // Requester.swift
-// Copyright © 2019 PJSC Bank Otkritie. All rights reserved.
+// Copyright © Darkness Production. All rights reserved.
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /// Request Manager
 public final class Requester: NSObject {
@@ -9,6 +13,11 @@ public final class Requester: NSObject {
     
     public typealias ResultHandler = (_ result: Any?, _ error: Error?) -> Void
     public typealias ProgressHandler = (_ progress: RequesterProgress) -> Void
+#if os(iOS)
+    private typealias Image = UIImage
+#elseif os(macOS)
+    private typealias Image = NSImage
+#endif
     
     // MARK: - Properties
 
@@ -79,12 +88,12 @@ public final class Requester: NSObject {
                             }
                             let string = String(data: data, encoding: .utf8) as? ResultType
                             response = (string, error)
-                        } else if ResultType.self is UIImage.Type {
+                        } else if ResultType.self is Image.Type {
                             guard let data = result as? Data else {
                                 response = (nil, error)
                                 return
                             }
-                            let image = UIImage(data: data) as? ResultType
+                            let image = Image(data: data) as? ResultType
                             response = (image, error)
                         } else {
                             response = (result as? ResultType, error)
@@ -186,7 +195,7 @@ public final class Requester: NSObject {
     private override init() {
         super.init()
         let configuration = URLSessionConfiguration.default
-        if #available(iOS 13.0, *) {
+        if #available(iOS 13.0, macOS 10.15, *) {
             configuration.tlsMinimumSupportedProtocolVersion = .TLSv12
         } else {
             configuration.tlsMinimumSupportedProtocol = .tlsProtocol12

@@ -1,5 +1,5 @@
 // DispatchQueue+Extension.swift
-// Copyright © 2019 PJSC Bank Otkritie. All rights reserved.
+// Copyright © Darkness Production. All rights reserved.
 
 import Foundation
 
